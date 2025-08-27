@@ -2,7 +2,7 @@
   <div>
     <h2>Liste des livres</h2>
     <v-card flat color="#AAD2BA">
-      <v-card-title class="d-flex align-center pe-2">
+      <v-card-title class="d-flex align-center pe-2 v-card">
         <v-spacer></v-spacer>
         <v-text-field
           v-model="search"
@@ -74,7 +74,9 @@ export default {
 </script>
 
 <style scoped>
-/* Vos styles existants pour les lignes alternées et la pagination */
+.v-card{
+  margin-top: 10px;
+}
 .even-row {
   background-color: #AAD2BA;
 }
@@ -87,7 +89,6 @@ export default {
   background-color: #AAD2BA;
 }
 
-/* ⚠️ Ajoute ces lignes pour forcer le quadrillage complet */
 :deep(table) {
   border-collapse: collapse !important;
 }

@@ -1,26 +1,28 @@
 <template>
-  <div class="livre-form">
+  <div>
     <h2>Ajouter un nouveau livre</h2>
-    <form @submit.prevent="submitLivre">
-      <input type="text" v-model="livre.titre" placeholder="Titre" required />
-      <input type="text" v-model="livre.auteur" placeholder="Auteur" required />
-      <input type="number" v-model="livre.anneePublication" placeholder="Année de publication" />
-      
-      <select v-model="livre.genre" required>
-        <option value="" disabled selected>Sélectionnez un genre</option>
-        <option value="roman">Roman</option>
-        <option value="science-fiction">Science-Fiction</option>
-        <option value="bande dessinée">Bande dessinée</option>
-        <option value="jeunesse">Jeunesse</option>
-        <option value="horreur">Horreur</option>
-        <option value="biographie">Biographie</option>
-        <option value="polar">Polar</option>
-        <option value="essai">Essai</option>
-      </select>
-      <div class="bouton">
-        <button type="submit">Ajouter</button>
-      </div>
-    </form>
+    <div class="livre-form">
+      <form @submit.prevent="submitLivre">
+        <input type="text" v-model="livre.titre" placeholder="Titre" required />
+        <input type="text" v-model="livre.auteur" placeholder="Auteur" required />
+        <input type="number" v-model="livre.anneePublication" placeholder="Année de publication" />
+        
+        <select v-model="livre.genre" required>
+          <option value="" disabled selected>Sélectionnez un genre</option>
+          <option value="roman">Roman</option>
+          <option value="science-fiction">Science-Fiction</option>
+          <option value="bande dessinée">Bande dessinée</option>
+          <option value="jeunesse">Jeunesse</option>
+          <option value="horreur">Horreur</option>
+          <option value="biographie">Biographie</option>
+          <option value="polar">Polar</option>
+          <option value="essai">Essai</option>
+        </select>
+        <div class="bouton">
+          <button type="submit">Ajouter</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
@@ -65,8 +67,11 @@ export default {
 .livre-form {
   border: 1px solid #ccc;
   border-radius: 8px;
+  margin-top: 10px;
+  padding-top: 10px;
   padding-left: 300px;
   padding-right: 300px;
+  background-color: #AAD2BA;
 }
 input, select {
   display: block;
