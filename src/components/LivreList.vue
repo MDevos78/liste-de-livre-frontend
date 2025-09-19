@@ -63,7 +63,7 @@ export default {
   methods: {
     async fetchLivres() {
       try {
-        const response = await axios.get('http://localhost:8081/api/livres');
+        const response = await axios.get('https://liste-de-livre-backend.onrender.com');
         this.livres = response.data;
       } catch (error) {
         console.error('Erreur lors de la récupération des livres:', error);
