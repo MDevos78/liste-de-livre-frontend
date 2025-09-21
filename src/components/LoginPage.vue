@@ -71,7 +71,7 @@ export default {
           localStorage.setItem('jwtToken', response.data.token);
           this.$router.push('../'); // Redirect to the books list
         } else {
-          await axios.post('http://liste-de-livre-backend.onrender.com/api/auth/register', {
+          await axios.post('https://liste-de-livre-backend.onrender.com/api/auth/register', {
             username: this.username,
             email: this.email,
             password: this.password
