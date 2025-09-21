@@ -44,7 +44,7 @@ export default {
   methods: {
     async submitLivre() {
       try {
-        await axios.post('http://localhost:8081/api/livres', this.livre);
+        await axios.post('https://liste-de-livre-backend.onrender.com/', this.livre);
         this.resetForm();
         this.$emit('livre-added');
       } catch (error) {
