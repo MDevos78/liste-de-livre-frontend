@@ -44,7 +44,24 @@ export default {
   methods: {
     async submitLivre() {
       try {
-        await axios.post('https://liste-de-livre-backend.onrender.com/api/livres', this.livre);
+        const token = localStorage.getItem('jwtToken');
+
+        if (!token) {
+          console.error('Jeton JWT non trouvé. Veuillez vous connecter.');
+          // Vous pouvez aussi afficher un message d'erreur à l'utilisateur ou le rediriger
+          return;
+        }
+
+        await axios.post(
+          'https://liste-de-livre-backend.onrender.com/api/livres',
+          this.livre,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
+        );
+
         this.resetForm();
         this.$emit('livre-added');
       } catch (error) {
