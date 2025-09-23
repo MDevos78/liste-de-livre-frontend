@@ -44,20 +44,17 @@ export default {
   methods: {
     async submitLivre() {
       try {
-        // 1. Récupérer le jeton JWT du localStorage
         const token = localStorage.getItem('jwtToken');
 
-        // 2. Vérifier si le jeton existe
         if (!token) {
-          console.error("Jeton JWT non trouvé. Veuillez vous connecter.");
-          // Vous pouvez aussi rediriger l'utilisateur vers la page de connexion
+          console.error('Jeton JWT non trouvé. Veuillez vous connecter.');
+          // Vous pouvez aussi afficher un message d'erreur à l'utilisateur ou le rediriger
           return;
         }
 
-        // 3. Ajouter le jeton à l'en-tête de la requête
         await axios.post(
-          'https://liste-de-livre-backend.onrender.com/api/livres', 
-          this.livre, 
+          'https://liste-de-livre-backend.onrender.com/api/livres',
+          this.livre,
           {
             headers: {
               'Authorization': `Bearer ${token}`
