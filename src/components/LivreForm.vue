@@ -45,13 +45,11 @@ export default {
     async submitLivre() {
       try {
         const token = localStorage.getItem('jwtToken');
-
         if (!token) {
           console.error('Jeton JWT non trouvé. Veuillez vous connecter.');
           // Vous pouvez aussi afficher un message d'erreur à l'utilisateur ou le rediriger
           return;
         }
-
         await axios.post(
           'https://liste-de-livre-backend.onrender.com/api/livres',
           this.livre,
