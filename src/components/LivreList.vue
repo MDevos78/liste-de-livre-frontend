@@ -38,15 +38,12 @@
                 <td class="text-left">{{ item.anneePublication }}</td>
                 
                 <td class="text-left">
-                    <v-btn 
-                        icon 
-                        size="large"  color="#AAD2BA" @click="deleteLivre(item.id)"
-                    >
-                        <v-icon 
-                            color="red"  size="x-large" >
-                            mdi-delete
-                        </v-icon>
-                    </v-btn>
+                  <v-btn 
+                      variant="text" size="small"  color="red"   @click="deleteLivre(item.id)"
+                  >
+                      <v-icon size="large"> mdi-delete
+                      </v-icon>
+                  </v-btn>
                 </td>
               </tr>
           </template>
