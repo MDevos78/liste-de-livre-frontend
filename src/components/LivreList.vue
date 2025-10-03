@@ -21,23 +21,33 @@
           :search="search"
           density="compact"
           :items-per-page="10"
+          mobile-breakpoint="600"
       >
           <template v-slot:headers="{ columns }">
               <tr>
-                  <th v-for="column in columns" :key="column.key" class="text-left">
+                  <th 
+                      v-for="column in columns" 
+                      :key="column.key" 
+                      class="text-left"
+                      :class="{ 
+                          'd-none d-sm-table-cell': column.key !== 'titre' && column.key !== 'auteur' 
+                      }"
+                  >
                       {{ column.title }}
                   </th>
-                  <th class="text-left">Actions</th> </tr>
+                  
+                  <th class="text-left d-none d-sm-table-cell">Actions</th> 
+              </tr>
           </template>
           
           <template v-slot:item="{ item, index }">
               <tr :class="{ 'even-row': index % 2 === 0, 'odd-row': index % 2 !== 0 }">
+                
                 <td class="text-left">{{ item.titre }}</td>
                 <td class="text-left">{{ item.auteur }}</td>
-                <td class="text-left">{{ item.genre }}</td>
-                <td class="text-left">{{ item.anneePublication }}</td>
-                
-                <td class="text-left">
+                <td class="text-left d-none d-sm-table-cell">{{ item.genre }}</td>
+                <td class="text-left d-none d-sm-table-cell">{{ item.anneePublication }}</td>
+                <td class="text-left d-none d-sm-table-cell">
                   <v-btn 
                       variant="text" size="small"  color="red"   @click="deleteLivre(item.id)"
                   >
@@ -67,7 +77,7 @@ export default {
     search: '',
     livres: [],
     headers: [
-      { title: 'Titre', key: 'titre', headerProps: { align: 'center' } },
+      { title: 'Titre', key: 'titre', headerProps: { align: 'center' }, },
       { title: 'Auteur', key: 'auteur', headerProps: { align: 'center' } },
       { title: 'Genre', key: 'genre', headerProps: { align: 'center' } },
       { title: 'Année de publication', key: 'anneePublication', headerProps: { align: 'center' } },
