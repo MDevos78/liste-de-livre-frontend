@@ -16,20 +16,38 @@
       </v-card-title>
       
       <v-data-table
-        :headers="headers"
-        :items="livres"
-        :search="search"
-        density="compact"
-        :items-per-page="10"
+          :headers="headers"
+          :items="livres"
+          :search="search"
+          density="compact"
+          :items-per-page="10"
       >
-        <template v-slot:item="{ item, index }">
-          <tr :class="{ 'even-row': index % 2 === 0, 'odd-row': index % 2 !== 0 }">
-            <td class="text-left">{{ item.titre }}</td>
-            <td class="text-left">{{ item.auteur }}</td>
-            <td class="text-left">{{ item.genre }}</td>
-            <td class="text-left">{{ item.anneePublication }}</td>
-          </tr>
-        </template>
+          <template v-slot:headers="{ columns }">
+              <tr>
+                  <th v-for="column in columns" :key="column.key" class="text-left">
+                      {{ column.title }}
+                  </th>
+                  <th class="text-left">Actions</th> </tr>
+          </template>
+          
+          <template v-slot:item="{ item, index }">
+              <tr :class="{ 'even-row': index % 2 === 0, 'odd-row': index % 2 !== 0 }">
+                  <td class="text-left">{{ item.titre }}</td>
+                  <td class="text-left">{{ item.auteur }}</td>
+                  <td class="text-left">{{ item.genre }}</td>
+                  <td class="text-left">{{ item.anneePublication }}</td>
+                  
+                  <td class="text-left">
+                      <v-btn 
+                          icon 
+                          size="small" 
+                          color="red"
+                          @click="deleteLivre(item.id)" >
+                          <v-icon>mdi-delete</v-icon>
+                      </v-btn>
+                  </td>
+              </tr>
+          </template>
       </v-data-table>
     </v-card>
   </div>
@@ -69,6 +87,32 @@ export default {
       } catch (error) {
         console.error('Erreur lors de la récupération des livres:', error);
       }
+    },
+    async deleteLivre(livreId) {
+        if (!confirm('Êtes-vous sûr de vouloir supprimer ce livre ?')) {
+            return;
+        }
+
+        try {
+            const token = localStorage.getItem('jwtToken');
+            
+            await axios.delete(
+                `https://liste-de-livre-backend.onrender.com/api/livres/${livreId}`, 
+                {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                }
+            );
+            
+            // Recharger la liste des livres pour mettre à jour l'affichage
+            this.fetchLivres(); 
+            
+        } catch (error) {
+            console.error('Erreur lors de la suppression du livre:', error);
+            // Affiche une alerte si la suppression échoue (ex: erreur 403)
+            alert('Erreur lors de la suppression. Vous n\'êtes peut-être pas le propriétaire.'); 
+        }
     },
   },
 };
