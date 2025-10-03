@@ -32,20 +32,22 @@
           
           <template v-slot:item="{ item, index }">
               <tr :class="{ 'even-row': index % 2 === 0, 'odd-row': index % 2 !== 0 }">
-                  <td class="text-left">{{ item.titre }}</td>
-                  <td class="text-left">{{ item.auteur }}</td>
-                  <td class="text-left">{{ item.genre }}</td>
-                  <td class="text-left">{{ item.anneePublication }}</td>
-                  
-                  <td class="text-left">
-                      <v-btn 
-                          icon 
-                          size="small" 
-                          color="black"
-                          @click="deleteLivre(item.id)" >
-                          <v-icon>mdi-delete</v-icon>
-                      </v-btn>
-                  </td>
+                <td class="text-left">{{ item.titre }}</td>
+                <td class="text-left">{{ item.auteur }}</td>
+                <td class="text-left">{{ item.genre }}</td>
+                <td class="text-left">{{ item.anneePublication }}</td>
+                
+                <td class="text-left">
+                    <v-btn 
+                        icon 
+                        size="large"  color="#AAD2BA" @click="deleteLivre(item.id)"
+                    >
+                        <v-icon 
+                            color="red"  size="x-large" >
+                            mdi-delete
+                        </v-icon>
+                    </v-btn>
+                </td>
               </tr>
           </template>
       </v-data-table>
