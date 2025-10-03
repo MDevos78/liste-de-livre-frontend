@@ -2,12 +2,21 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import axios from 'axios' 
+import '@mdi/font/css/materialdesignicons.css' // Importez les styles CSS des icônes
 import 'vuetify/styles' 
+import { aliases, mdi } from 'vuetify/iconsets/mdi' // Importez l'ensemble d'icônes MDI
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 const vuetify = createVuetify({
+  icons: {
+    defaultSet: 'mdi',
+    aliases,
+    sets: {
+      mdi, // Enregistrez l'ensemble d'icônes MDI
+    },
+  },
   components,
   directives,
 })
