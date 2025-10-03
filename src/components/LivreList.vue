@@ -41,7 +41,7 @@
                       <v-btn 
                           icon 
                           size="small" 
-                          color="red"
+                          color="black"
                           @click="deleteLivre(item.id)" >
                           <v-icon>mdi-delete</v-icon>
                       </v-btn>
