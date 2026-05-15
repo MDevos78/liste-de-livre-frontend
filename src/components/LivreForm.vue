@@ -44,7 +44,22 @@ export default {
   methods: {
     async submitLivre() {
       try {
-        await axios.post('http://localhost:8081/api/livres', this.livre);
+        const token = localStorage.getItem('jwtToken');
+        if (!token) {
+          console.error('Jeton JWT non trouvé. Veuillez vous connecter.');
+          // Vous pouvez aussi afficher un message d'erreur à l'utilisateur ou le rediriger
+          return;
+        }
+        await axios.post(
+          'https://liste-de-livre-backend.onrender.com/api/livres',
+          this.livre,
+          {
+            headers: {
+              'Authorization': `Bearer ${token}`
+            }
+          }
+        );
+
         this.resetForm();
         this.$emit('livre-added');
       } catch (error) {
@@ -94,5 +109,22 @@ button{
   width: 200px;
   color: #1D1E18;
   background-color: #6B8F71;
+}
+@media screen and (max-width: 1120px) {
+  .livre-form {
+    /* Annuler les paddings énormes pour que le formulaire prenne la place */
+    padding-left: 15px; /* Petit padding pour éviter que le formulaire ne touche les bords */
+    padding-right: 15px;
+  }
+  
+  .bouton {
+    /* Garantir que le bouton est centré sur mobile aussi */
+    text-align: center;
+  }
+  
+  button {
+    /* Le bouton prend toute la largeur du formulaire sur mobile pour un meilleur toucher */
+    width: 100%; 
+  }
 }
 </style>

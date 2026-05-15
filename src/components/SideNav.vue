@@ -1,6 +1,6 @@
 <template>
   <aside class="sidenav">
-    <nav>
+    <nav nav class="sidenav-nav">
       <router-link to="/">Liste des livres</router-link>
       <router-link to="/ajouter">Ajouter un livre</router-link>
     </nav>
@@ -34,5 +34,28 @@ export default {
 }
 .sidenav a:hover {
   color: #f1f1f1;
+}
+@media screen and (max-width: 600px) {
+  .sidenav {
+    /* 1. La barre devient une barre de navigation supérieure */
+    width: 100%; /* Occupe toute la largeur */
+    height: auto; /* Sa hauteur s'adapte à son contenu */
+    position: relative; /* N'est plus fixe, mais dans le flux */
+    padding-top: 0;
+  }
+  
+  .sidenav-nav {
+    /* La navigation est en mode flex pour aligner les liens horizontalement */
+    display: flex;
+    justify-content: space-around; /* Distribue l'espace entre les liens */
+    padding: 10px 0; /* Un peu d'espacement vertical */
+  }
+
+  .sidenav a {
+    /* 2. Les liens sont compactés */
+    font-size: 16px; /* Taille de police plus petite */
+    padding: 5px 10px;
+    text-align: center;
+  }
 }
 </style>

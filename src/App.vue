@@ -31,4 +31,15 @@ export default {
   margin-left: 200px;
   padding: 40px 10px 10px 10px;
 }
+@media screen and (max-width: 600px) {
+  
+  .nav {
+    /* Sur mobile, la SideNav passe en haut et n'a plus de largeur, on annule le décalage */
+    margin-left: 0;
+  }
+  .content {
+    margin-left: 0;
+    padding-top: 80px;
+  }
+}
 </style>
