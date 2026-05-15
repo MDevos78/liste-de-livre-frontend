@@ -106,7 +106,7 @@ export default {
             const token = localStorage.getItem('jwtToken');
             
             await axios.delete(
-                `https://liste-de-livre-backend.onrender.com/api/livres/${livreId}`, 
+                `http://localhost:8081/api/livres/${livreId}`, 
                 {
                     headers: {
                         'Authorization': `Bearer ${token}`
